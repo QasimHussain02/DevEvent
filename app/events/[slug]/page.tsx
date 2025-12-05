@@ -1,4 +1,5 @@
 import {NextResponse} from "next/server";
+import { notFound } from 'next/navigation'
 import Image from "next/image";
 import BookEvent from "@/components/BookEvent";
 import {getSimilarEventsBySlug} from "@/lib/actions/action.event";
@@ -36,9 +37,9 @@ const bookings = 10;
     const events = await fetch(`http://localhost:3000/api/event/${slug}`);
     const { data } = await events.json();
      const { description, image, overview, date, time, location, mode, agenda, audience, tags, organizer } = data;
-   const similarEvents : IEvent[] = await getSimilarEventsBySlug(slug);
+   const similarEvents  = await getSimilarEventsBySlug(slug);
      console.log(similarEvents);
-    if(!data) return NextResponse.json({message:"could not fetch "},{status:400})
+    if(!data) {return notFound()};
     return (
         <section id="event">
             <div className="header">
