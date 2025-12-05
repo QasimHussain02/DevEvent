@@ -1,4 +1,4 @@
-import {NextResponse} from "next/server";
+
 import { notFound } from 'next/navigation'
 import Image from "next/image";
 import BookEvent from "@/components/BookEvent";
